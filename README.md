@@ -44,6 +44,9 @@ As you solve each TODO in src/app.js, you aren't just writing code—you are act
 
 - Your Goal: Defuse the XSS bomb. Use safe DOM updates to render the notifications like an armored glass window—visible, but impenetrable.
 
+---
+
+
 ### 🖥️ Act II: The Data Vault (The Parser & Fetcher)
 
 #### 🚀 Mission 3: parseProfileJson(jsonText)
