@@ -25,9 +25,9 @@ const STORAGE_KEY = "ssp_session_v1";
  * - use regex, not DOM APIs
  */
 function sanitizeUsername(input) {
-  // TODO: implement
-  return "";
-
+  return String(input)
+    .replace(/[^A-Za-z0-9_-]/g, "_")
+    .slice(0, 20);
   
 }
 
