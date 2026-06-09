@@ -115,7 +115,19 @@ function parseProfileJson(jsonText) {
  */
 async function fetchUserProfile(url) {
   // TODO: implement
-  return null;
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const text = await response.text();
+
+    return parseProfileJson(text);
+  } catch (err) {
+    return null;
+  }
 }
 
 /** -----------------------------
