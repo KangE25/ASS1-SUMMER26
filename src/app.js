@@ -146,6 +146,14 @@ async function fetchUserProfile(url) {
  */
 function saveSessionToStorage(profile) {
   // TODO: implement
+const session = {
+    displayName: profile.displayName,
+    role: profile.role
+  };
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(session)
+  );
 }
 
 /**
