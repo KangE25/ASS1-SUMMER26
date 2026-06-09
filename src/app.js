@@ -164,7 +164,29 @@ const session = {
  */
 function loadSessionFromStorage() {
   // TODO: implement
-  return null;
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+
+    if (!raw) {
+      return null;
+    }
+    
+    const session = JSON.parse(raw);
+    if (
+      typeof session !== "object" ||
+      session === null ||
+      typeof session.displayName !== "string" ||
+      typeof session.role !== "string"
+    ) {
+      return null;
+    }
+    return {
+      displayName: session.displayName,
+      role: session.role
+    };
+  } catch (err) {
+    return null;
+  }
 }
 
 /** -----------------------------
@@ -183,6 +205,14 @@ function loadSessionFromStorage() {
  */
 function computeAccessStatus(profile) {
   // TODO: implement
+  if (
+    profile &&
+    typeof profile.role === "string" &&
+    profile.role === "admin"
+  ) {
+    return "GRANTED";
+  }
+
   return "DENIED";
 }
 
