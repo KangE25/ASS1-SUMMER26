@@ -69,9 +69,37 @@ function renderNotifications(listEl, notifications) {
  */
 function parseProfileJson(jsonText) {
   // TODO: implement
-  return null;
-}
+  try {
+    const profile = JSON.parse(jsonText);
 
+    if (
+      typeof profile.displayName !== "string" ||
+      typeof profile.role !== "string" ||
+      !Array.isArray(profile.notifications)
+    ) {
+      return null;
+    }
+
+    if (
+      profile.role !== "user" &&
+      profile.role !== "admin"
+    ) {
+      return null;
+    }
+
+    const allStrings = profile.notifications.every(
+      (item) => typeof item === "string"
+    );
+
+    if (!allStrings) {
+      return null;
+    }
+
+    return profile;
+  } catch (err) {
+    return null;
+  }
+}
 /** -----------------------------
  *  Part C — Async fetch
  *  -----------------------------
